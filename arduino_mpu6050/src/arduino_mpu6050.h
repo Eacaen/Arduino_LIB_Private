@@ -34,7 +34,7 @@ typedef struct EularAngle
 
 typedef struct Acce 
 {
-	float x,y,z;
+	int x,y,z;
 }Acce ;
 
 typedef struct Gyro
@@ -52,15 +52,15 @@ public:
 	void InitMPU6050(void);
 	void GetData(void);
 	int MPU6050ReadID(void);
-	
 	void Data_Trans(Acce acc,Gyro gyro);
 	void Data_Pare(Acce acc,Gyro gyro);  
-private:
+	int MPU_Read(unsigned char REG_Address);
+private:	
     void IIC_WriteOneByte(unsigned char add,unsigned char reg,unsigned char para); 
 	unsigned char IIC_Read_Single(unsigned char add,unsigned char reg );
-	void Calibration();
-	int CombineData(unsigned char REG_Address);
-	
+ 	void Calibration();
+	short CombineData(unsigned char REG_Address);
+
 };
 
 
